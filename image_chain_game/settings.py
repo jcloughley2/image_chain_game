@@ -158,3 +158,14 @@ CELERY_BEAT_SCHEDULE = {
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
+
+# Set the SASS_PROCESSOR_ROOT to your static directory
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+# Enable the SASS processor
+SASS_PROCESSOR_ENABLED = True
+
+# Add the CssFinder to your static files finders
+STATICFILES_FINDERS = [
+    'sass_processor.finders.CssFinder',
+]

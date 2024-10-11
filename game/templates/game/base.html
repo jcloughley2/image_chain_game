@@ -1,9 +1,10 @@
+{% load sass_tags %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>{% block title %}Image Chain Game{% endblock %}</title>
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'game/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% sass_src 'scss/styles.scss' %}">
 </head>
 <body>
     <header>
