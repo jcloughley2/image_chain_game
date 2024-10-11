@@ -1,22 +1,23 @@
 {% extends "game/base.html" %}
 
 {% block content %}
-    <div class="current-day">
-        <h2>Today's Image Chain Game</h2>
+    <div class="current-day-content">
+        <!-- <h2>Today's Image Chain Game</h2> -->
+        <div class="current-day">
         {% if latest_image and not latest_image.has_been_described %}
             <div class="image-container">
                 <img class="image-border" src="{{ latest_image.url }}" alt="Today's Latest Image" width="300px" onerror="this.onerror=null; this.src='/static/fallback_image.jpg';" />
-                <p class="prompt">Prompt: {{ latest_image.prompt|default:"No prompt available" }}</p>
+                <!-- <p class="prompt">Prompt: {{ latest_image.prompt|default:"No prompt available" }}</p> -->
             </div>
-            <h3>Describe today's latest image:</h3>
-            <form method="post">
+            <form class="description-form" method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit">Submit Description</button>
             </form>
-        {% else %}
-            <p>No new image to describe today. Check back later!</p>
-        {% endif %}
+            {% else %}
+                <p>No new image to describe today. Check back later!</p>
+            {% endif %}
+        </div>
     </div>
 
     <div class="image-history">
@@ -29,9 +30,9 @@
                         <div class="image-item">
                             <img src="{{ image.url }}" alt="Image {{ forloop.counter }}" onerror="this.onerror=null; this.src='/static/fallback_image.jpg';" />
                             <p class="prompt">{{ image.prompt|default:"No prompt available" }}</p>
-                            {% if not forloop.last %}
+                            <!-- {% if not forloop.last %}
                                 <p class="description">{{ image.descriptions.first.text }}</p>
-                            {% endif %}
+                            {% endif %} -->
                         </div>
                     {% endfor %}
                 </div>
