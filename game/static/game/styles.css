@@ -1,0 +1,17 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    color: #333;
+}
+
+.image-border {
+    border: 5px solid #000;
+    border-radius: 8px;
+    padding: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+

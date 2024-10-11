@@ -1,0 +1,41 @@
+{% extends "game/base.html" %}
+
+{% block content %}
+    <div class="current-day">
+        <h2>Today's Image Chain Game</h2>
+        {% if latest_image and not latest_image.has_been_described %}
+            <div class="image-container">
+                <img class="image-border" src="{{ latest_image.url }}" alt="Today's Latest Image" width="300px" onerror="this.onerror=null; this.src='/static/fallback_image.jpg';" />
+                <p class="prompt">Prompt: {{ latest_image.prompt|default:"No prompt available" }}</p>
+            </div>
+            <h3>Describe today's latest image:</h3>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Submit Description</button>
+            </form>
+        {% else %}
+            <p>No new image to describe today. Check back later!</p>
+        {% endif %}
+    </div>
+
+    <div class="image-history">
+        <h2>Image Chain Game History</h2>
+        {% for date, images in images_by_date.items %}
+            <div class="day-collection">
+                <h3>{{ date }}</h3>
+                <div class="image-sequence">
+                    {% for image in images %}
+                        <div class="image-item">
+                            <img src="{{ image.url }}" alt="Image {{ forloop.counter }}" onerror="this.onerror=null; this.src='/static/fallback_image.jpg';" />
+                            <p class="prompt">{{ image.prompt|default:"No prompt available" }}</p>
+                            {% if not forloop.last %}
+                                <p class="description">{{ image.descriptions.first.text }}</p>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
