@@ -28,8 +28,9 @@
                 <div class="image-sequence">
                     {% for image in images %}
                         <div class="image-item">
-                            <img src="{{ image.url }}" alt="Image {{ forloop.counter }}" onerror="this.onerror=null; this.src='/static/fallback_image.jpg';" />
                             <p class="prompt">{{ image.prompt|default:"No prompt available" }}</p>
+                            <img src="{{ image.url }}" alt="Image {{ forloop.counter }}" onerror="this.onerror=null; this.src='/static/fallback_image.jpg';" />
+                            
                             <!-- {% if not forloop.last %}
                                 <p class="description">{{ image.descriptions.first.text }}</p>
                             {% endif %} -->

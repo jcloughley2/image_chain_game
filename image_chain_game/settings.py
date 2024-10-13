@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'game',
     'sass_processor',
+    'livereload',
 ]
 
 MIDDLEWARE = [
@@ -122,6 +123,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [
     BASE_DIR / "game/static",  # Add this line to include your static files
+    BASE_DIR / "staticfiles",  # Add this line to include your static files
+
 ]
 
 # Default primary key field type
